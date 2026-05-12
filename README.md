@@ -29,10 +29,15 @@
 ### Компиляция
 
 cd /путь/к/проекту/file_parser
+
 mkdir -p build
+
 cd build
+
 cmake ..
+
 cmake --build .
+
 ./file_app
 
 # Для запуска без тестов
