@@ -10,6 +10,7 @@
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QFormLayout>
+#include <QMessageBox>
 
 class AddFileDialog : public QDialog {
     Q_OBJECT
@@ -21,15 +22,18 @@ private:
     QPushButton* okButton;
     QPushButton* cancelButton;
 
+    void setupUI();
+    void validateInput();
+
 public:
-    AddFileDialog(QWidget* parent = nullptr);
+    explicit AddFileDialog(QWidget* parent = nullptr);
 
     QString getFilename() const;
     QString getDate() const;
     int getSize() const;
 
 private slots:
-    void validateInput();
+    void onOkClicked();
 };
 
 #endif // ADDFILEDIALOG_H

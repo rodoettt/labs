@@ -5,23 +5,8 @@
 #include <QTableWidget>
 #include <QPushButton>
 #include <QLabel>
-#include <QVBoxLayout>
-#include <QHBoxLayout>
-#include <vector>
-
-class File {
-private:
-    QString filename;
-    QString date;
-    int size;
-
-public:
-    File(QString f, QString d, int s) : filename(f), date(d), size(s) {}
-
-    QString getFilename() const { return filename; }
-    QString getDate() const { return date; }
-    int getSize() const { return size; }
-};
+#include <QTextEdit>
+#include "../model/FileManagerModel.h"
 
 class AddFileDialog;
 class ImportWindow;
@@ -30,18 +15,20 @@ class MainWindow : public QMainWindow {
     Q_OBJECT
 
 private:
+    FileManagerModel* model;
     QTableWidget* tableWidget;
+    QTextEdit* logWidget;
     QPushButton* addButton;
     QPushButton* deleteButton;
     QPushButton* totalButton;
     QPushButton* importButton;
+    QPushButton* showLogButton;
     QLabel* totalLabel;
-    std::vector<File> files;
+    QLabel* countLabel;
 
     void setupUI();
     void refreshTable();
-    long long getTotalSize() const;
-    void parseAndAddData(const QStringList& lines);
+    void updateStats();
 
 public:
     MainWindow(QWidget *parent = nullptr);
@@ -52,7 +39,9 @@ public slots:
     void onDeleteFile();
     void onShowTotal();
     void onImportData();
-    void addFileToManager(const QString& filename, const QString& date, int size);
+    void onShowLog();
+    void onModelDataChanged();
+    void onModelError(const QString& error);
 };
 
 #endif // MAINWINDOW_H
