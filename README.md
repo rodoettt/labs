@@ -28,7 +28,7 @@
 
 ### Компиляция
 
-cd /путь/к/проекту/file_parser
+cd /путь/к/проекту/
 
 mkdir -p build
 
@@ -40,6 +40,7 @@ cmake --build .
 
 ./file_app
 
-# Для запуска без тестов
+### Для запуска без тестов
+
 ./file_app --skip-tests
 
